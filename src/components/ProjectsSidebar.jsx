@@ -10,6 +10,6 @@ export default function ProjectsSidebar() {
         </button>
       </div>
       <ul></ul>
-    </aside> 
+    </aside>
   );
 }
