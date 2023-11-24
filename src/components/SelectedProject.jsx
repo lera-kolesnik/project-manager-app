@@ -1,4 +1,5 @@
 import Tasks from "./Tasks.jsx";
+import { formatDate } from "../helpers/dateUtils.js";
 
 export default function SelectedProject({
   project,
@@ -7,11 +8,7 @@ export default function SelectedProject({
   onDeleteTask,
   tasks,
 }) {
-  const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-  });
+  const formattedDate = formatDate(project.dueDate);
 
   return (
     <div className="w-[35rem] mt-16">
