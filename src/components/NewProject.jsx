@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useState, useRef } from "react";
 import Input from "./Input.jsx";
 import Modal from "./Modal.jsx";
 
@@ -9,15 +9,24 @@ export default function NewProject({ onAdd, onCancel }) {
   const description = useRef();
   const dueDate = useRef();
 
+  const [descriptionHeight, setDescriptionHeight] = useState("auto");
+
+  const onChange = () => {
+    const lines = description.current.value.split("\n").length;
+    const newHeight = `${lines * 1.5}rem`;
+    setDescriptionHeight(newHeight);
+    description.current.style.height = newHeight;
+  };
+
   function handleSave() {
-    const enteredTitle = title.current.value;
-    const enteredDescription = description.current.value;
-    const enteredDueDate = dueDate.current.value;
+    const enteredTitle = title.current.value.trim();
+    const enteredDescription = description.current.value.trim();
+    const enteredDueDate = dueDate.current.value.trim();
 
     if (
-      enteredTitle.trim() === "" ||
-      enteredDescription.trim() === "" ||
-      enteredDueDate.trim() === ""
+      enteredTitle === "" ||
+      enteredDescription === "" ||
+      enteredDueDate === ""
     ) {
       modal.current.open();
       return;
@@ -62,7 +71,14 @@ export default function NewProject({ onAdd, onCancel }) {
         </menu>
         <div>
           <Input type="text" ref={title} label="Title" />
-          <Input ref={description} label="Description" textarea />
+          <Input
+            textarea
+            ref={description}
+            label="Description"
+            className="resize-none w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600 mb-4"
+            style={{ height: descriptionHeight, overflow: "hidden" }}
+            onChange={onChange}
+          />
           <Input type="date" ref={dueDate} label="Due Date" />
         </div>
       </div>
