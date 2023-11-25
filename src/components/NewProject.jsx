@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import Input from "./Input.jsx";
 import Modal from "./Modal.jsx";
 
@@ -9,13 +9,16 @@ export default function NewProject({ onAdd, onCancel }) {
   const description = useRef();
   const dueDate = useRef();
 
-  const [descriptionHeight, setDescriptionHeight] = useState("auto");
-
   const onChange = () => {
-    const lines = description.current.value.split("\n").length;
-    const newHeight = `${lines * 1.5}rem`;
-    setDescriptionHeight(newHeight);
-    description.current.style.height = newHeight;
+    const currentDescription = description.current;
+    const newHeight = currentDescription.scrollHeight;
+
+    currentDescription.style.height = `${newHeight > 150 ? newHeight : 150}px`;
+
+    requestAnimationFrame(() => {
+      currentDescription.style.height = "auto";
+      currentDescription.style.height = `${currentDescription.scrollHeight}px`;
+    });
   };
 
   function handleSave() {
@@ -76,7 +79,12 @@ export default function NewProject({ onAdd, onCancel }) {
             ref={description}
             label="Description"
             className="resize-none w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600 mb-4"
-            style={{ height: descriptionHeight, overflow: "hidden" }}
+            style={{
+              minHeight: "150px",
+              overflow: "hidden",
+              wordWrap: "break-word",
+              whiteSpace: "pre-wrap",
+            }}
             onChange={onChange}
           />
           <Input type="date" ref={dueDate} label="Due Date" />
