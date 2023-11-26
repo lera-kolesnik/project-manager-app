@@ -11,12 +11,17 @@ export default function Tasks({ tasks, onAdd, onDelete }) {
         </p>
       )}
       {tasks.length > 0 && (
-        <ul className="p-4 mt-8 rounded-md bg-stone-100">
+        <ul className="mt-8 rounded-md">
           {tasks.map((task) => (
-            <li key={task.id} className="flex justify-between my-4">
-              <span>{task.text}</span>
+            <li
+              key={task.id}
+              className="flex justify-between items-center my-4"
+            >
+              <span className="flex-1 overflow-wrap-break-word rounded-md bg-stone-100 mr-8 p-3">
+                {task.text}
+              </span>
               <button
-                className="text-stone-700 hover:text-red-500"
+                className="text-stone-700 hover:border-stone-400 rounded-md border-2 border-stone-300 px-2 py-2"
                 onClick={() => onDelete(task.id)}
               >
                 Clear
