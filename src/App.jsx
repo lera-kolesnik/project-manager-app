@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { unmountComponentAtNode } from "react-dom";
 import { v4 as uuidv4 } from "uuid";
 import NewProject from "./components/NewProject.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
@@ -10,7 +9,7 @@ function App() {
   const [projectsState, setProjectsState] = useState({
     selectedProjectId: undefined,
     projects: [],
-    tasks: [],
+    tasks: {},
   });
 
   function handleAddTask(text) {
@@ -21,18 +20,33 @@ function App() {
         projectId: prevState.selectedProjectId,
         id: taskId,
       };
+
+      const updatedProjectTasks = {
+        ...prevState.tasks,
+        [prevState.selectedProjectId]: [
+          newTask,
+          ...(prevState.tasks[prevState.selectedProjectId] || []),
+        ],
+      };
+
       return {
         ...prevState,
-        tasks: [newTask, ...prevState.tasks],
+        tasks: updatedProjectTasks,
       };
     });
   }
 
   function handleDeleteTask(id) {
     setProjectsState((prevState) => {
+      const updatedProjectTasks = {
+        ...prevState.tasks,
+        [prevState.selectedProjectId]: prevState.tasks[
+          prevState.selectedProjectId
+        ].filter((task) => task.id !== id),
+      };
       return {
         ...prevState,
-        tasks: prevState.tasks.filter((task) => task.id !== id),
+        tasks: updatedProjectTasks,
       };
     });
   }
