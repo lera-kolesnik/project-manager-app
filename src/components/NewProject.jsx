@@ -13,7 +13,7 @@ export default function NewProject({ onAdd, onCancel }) {
     const currentDescription = description.current;
     const newHeight = currentDescription.scrollHeight;
 
-    currentDescription.style.height = `${newHeight > 150 ? newHeight : 150}px`;
+    currentDescription.style.height = `${newHeight > 152 ? newHeight : 152}px`;
 
     requestAnimationFrame(() => {
       currentDescription.style.height = "auto";
@@ -80,7 +80,7 @@ export default function NewProject({ onAdd, onCancel }) {
             label="Description"
             className="resize-none w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600 mb-4"
             style={{
-              minHeight: "150px",
+              minHeight: "152px",
               overflow: "hidden",
               wordWrap: "break-word",
               whiteSpace: "pre-wrap",
