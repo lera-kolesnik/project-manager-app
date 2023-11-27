@@ -45,19 +45,19 @@ export default function NewProject({ onAdd, onCancel }) {
   return (
     <>
       <Modal ref={modal} buttonCaption="Okay">
-        <h2 className="text-xl font-bold text-stone-700 my-4">Invalid Input</h2>
-        <p className="text-stone-600 mb-4">
+        <h2 className="text-xl font-bold text-gray-700 my-4">Invalid Input</h2>
+        <p className="text-gray-600 mb-4">
           Oops... looks like you forgot to enter a value
         </p>
-        <p className="text-stone-600 mb-4">
+        <p className="text-gray-600 mb-4">
           Please make sure you provide a valid value for every input field
         </p>
       </Modal>
       <div className="w-[35rem] mt-16">
-        <menu className="flex item-center justify-end gap-4 my-4">
+        <menu className="flex item-center justify-end gap-2 my-4">
           <li>
             <button
-              className="py-2 text-stone-800 hover:text-stone-950"
+              className="px-5 py-2 rounded-md text-gray-800 text-decoration-line: underline hover:bg-indigo-200"
               onClick={onCancel}
             >
               Cancel
@@ -65,7 +65,7 @@ export default function NewProject({ onAdd, onCancel }) {
           </li>
           <li>
             <button
-              className="px-6 py-2 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950"
+              className="px-6 py-2 rounded-md bg-gray-700 text-gray-50 hover:bg-gray-800"
               onClick={handleSave}
             >
               Save
@@ -78,7 +78,7 @@ export default function NewProject({ onAdd, onCancel }) {
             textarea
             ref={description}
             label="Description"
-            className="resize-none w-full p-1 border-b-2 rounded-sm border-stone-300 bg-stone-200 text-stone-600 focus:outline-none focus:border-stone-600 mb-4"
+            className="resize-none w-full p-1 border-b-2 rounded-sm border-gray-300 bg-gray-200 text-gray-600 focus:outline-none focus:border-gray-600 mb-4"
             style={{
               minHeight: "152px",
               overflow: "hidden",
