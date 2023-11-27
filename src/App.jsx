@@ -1,16 +1,20 @@
-import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
+import UseLocalStorageState from "./api/UseLocalStorageState.js";
 import NewProject from "./components/NewProject.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
 import ProjectsSidebar from "./components/ProjectsSidebar.jsx";
 import SelectedProject from "./components/SelectedProject.jsx";
 
 function App() {
-  const [projectsState, setProjectsState] = useState({
-    selectedProjectId: undefined,
-    projects: [],
-    tasks: {},
-  });
+  const localStorageKey = "managementProjectState";
+  const [projectsState, setProjectsState] = UseLocalStorageState(
+    localStorageKey,
+    {
+      selectedProjectId: undefined,
+      projects: [],
+      tasks: {},
+    }
+  );
 
   function handleAddTask(text) {
     setProjectsState((prevState) => {
