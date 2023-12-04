@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import UseLocalStorageState from "./api/UseLocalStorageState.js";
+import UseLocalStorageState from "./hooks/UseLocalStorageState.js";
 import NewProject from "./components/NewProject.jsx";
 import NoProjectSelected from "./components/NoProjectSelected.jsx";
 import ProjectsSidebar from "./components/ProjectsSidebar.jsx";
