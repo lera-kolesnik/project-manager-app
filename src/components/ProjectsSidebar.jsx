@@ -8,14 +8,14 @@ export default function ProjectsSidebar({
   selectedProjectId,
 }) {
   return (
-    <aside className="w-1/3 px-8 py-16 bg-gray-800 text-gray-50 md:w-80 rounded-r-[45px]">
+    <aside className="flex flex-col w-1/3 px-8 py-16 bg-gray-800 text-gray-50 md:w-80 rounded-r-[45px]">
       <h2 className="mb-8 font-bold uppercase md:text-xl text-gray-200">
         Your Projects
       </h2>
       <div>
         <Button onClick={onStartAddProject}>+ Add Project</Button>
       </div>
-      <ul className="mt-8">
+      <ul className="mt-8 flex-grow overflow-auto">
         {projects.map((project) => {
           let cssClasses =
             "w-full text-left px-2 py-1 rounded-sm my-1 hover:text-gray-200 hover:bg-gray-700";
